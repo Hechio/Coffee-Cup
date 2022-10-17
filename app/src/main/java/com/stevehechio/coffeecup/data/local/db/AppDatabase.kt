@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.stevehechio.coffeecup.data.local.convertors.StringListTypeConvertor
 import com.stevehechio.coffeecup.data.local.dao.CoffeeDao
 import com.stevehechio.coffeecup.data.local.entities.CoffeeEntity
 import com.stevehechio.coffeecup.utils.AppConstants
@@ -16,6 +18,7 @@ import com.stevehechio.coffeecup.utils.AppConstants
     entities = [CoffeeEntity::class],
     version = AppConstants.DB_VERSION, exportSchema = false
 )
+@TypeConverters(StringListTypeConvertor::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun coffeeDao(): CoffeeDao
 
