@@ -1,5 +1,6 @@
 package com.stevehechio.coffeecup.data.remote.api
 
+import com.stevehechio.coffeecup.data.local.entities.CoffeeEntity
 import com.stevehechio.coffeecup.data.remote.model.CoffeeApiResponse
 import com.stevehechio.coffeecup.data.remote.model.CoffeeRandomResponse
 import io.reactivex.rxjava3.core.Observable
@@ -12,7 +13,7 @@ import retrofit2.http.Path
 interface CoffeeApiService {
 
     @GET("{type}")
-    fun getCoffeeDetails(@Path("type") type: String): Observable<CoffeeApiResponse>
+    fun getCoffeeDetails(@Path("type") type: String): Observable<List<CoffeeEntity>>
 }
 
 interface RandomCoffeeService{

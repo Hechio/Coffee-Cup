@@ -1,5 +1,7 @@
 package com.stevehechio.coffeecup.ui.activities.home
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.stevehechio.coffeecup.data.Resource
@@ -18,12 +20,14 @@ import javax.inject.Inject
 @HiltViewModel
 class CoffeeViewModel @Inject constructor(private val repository: CoffeeRepository) : ViewModel(){
     private val compositeDisposable = CompositeDisposable()
-    private val coffeeEntityLiveData: MutableLiveData<Resource<List<CoffeeEntity>>> =
-        MutableLiveData<Resource<List<CoffeeEntity>>>()
+    private val coffeeEntityLiveData =
+        mutableStateOf<Resource<List<CoffeeEntity>>>(Resource.Success(null))
 
     val getCoffeeEntityLiveData:
-            MutableLiveData<Resource<List<CoffeeEntity>>> = coffeeEntityLiveData
-
+            State<Resource<List<CoffeeEntity>>> = coffeeEntityLiveData
+init {
+    fetchCoffeeDetails("hot")
+}
     fun fetchCoffeeDetails(type: String){
         addToDisposable(
             repository.getCoffeeDetails(type = type)

@@ -7,7 +7,7 @@ object AppConstants {
     const val TABLE_NAME = "coffee_cup_table"
     const val DB_VERSION = 1
     const val DB_NAME = "Coffee_DB"
-    const val BASE_URL = "ttps://api.sampleapis.com/coffee/"
+    const val BASE_URL = "https://api.sampleapis.com/coffee/"
     const val BASE_URL_RANDOM = "https://coffee.alexflipnote.dev/"
 
 //    https://api.sampleapis.com/coffee/hot

@@ -43,14 +43,14 @@ class CoffeeRepository @Inject constructor(
                 .doOnNext {
                     Completable.fromRunnable {
                         appDatabase.coffeeDao().deleteAll()
-                        it.coffeeList.forEach { coffeeEntity ->
+                        it.forEach { coffeeEntity ->
                             coffeeEntity.type = type
                         }
-                        appDatabase.coffeeDao().insertAll(it.coffeeList)
+                        appDatabase.coffeeDao().insertAll(it)
                     }.subscribeOn(io()).subscribe()
                 }
                 .subscribe({
-                    emitter.onNext( Resource.Success(it.coffeeList))
+                    emitter.onNext( Resource.Success(it))
                     Log.d("coffee res", "Success Execution! $it")
                 },{
                     emitter.onNext(Resource.Failure(it.localizedMessage))
